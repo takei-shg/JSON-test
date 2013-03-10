@@ -1,5 +1,7 @@
 JSON-test
 ============
+Test Project which using Data.Aeson & Database.Persistent.
+The defined model(User) can be parse to JSON.
 
 How to use
 ------------
