@@ -1,18 +1,18 @@
-{-# LANGUAGE OverloadedStrings    #-}
-{-# LANGUAGE FlexibleContexts     #-}
-{-# LANGUAGE GADTs                #-}
-{-# LANGUAGE KindSignatures       #-}
-{-# LANGUAGE QuasiQuotes          #-}
-{-# LANGUAGE TemplateHaskell      #-}
-{-# LANGUAGE TypeFamilies         #-}
+{-# LANGUAGE FlexibleContexts  #-}
+{-# LANGUAGE GADTs             #-}
+{-# LANGUAGE KindSignatures    #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE QuasiQuotes       #-}
+{-# LANGUAGE TemplateHaskell   #-}
+{-# LANGUAGE TypeFamilies      #-}
 module Model where
 
 import           Control.Applicative ((<$>))
-import           Control.Monad (mzero)
+import           Control.Monad       (mzero)
+import qualified Data.Aeson          as A
 import           Data.Text
 import           Database.Persist
 import           Database.Persist.TH
-import qualified Data.Aeson as A
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persist|
 
@@ -28,7 +28,7 @@ User json
 data Editor
     = VIM | EMACS
     deriving (Show, Read, Eq, Enum)
- 
+
 derivePersistField "Editor"
 
 -- $(deriveJSON id ''Editor)

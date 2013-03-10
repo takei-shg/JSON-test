@@ -8,7 +8,7 @@ import           Control.Applicative ((<$>))
 import qualified Data.HashMap.Strict as M
 import           Data.Maybe          (fromMaybe)
 import           Data.Text
-import qualified Data.Yaml as Y 
+import qualified Data.Yaml           as Y
 
 get :: FilePath -> Text -> Text -> IO Text
 get path env configName = do
@@ -27,8 +27,8 @@ get path env configName = do
 		-- getObject :: Text -> Y.Value -> Maybe (M.HashMap Text Y.Value)
 		getObject env v = do
 			envs <- fromObject v
-			maybe 
-				(error $ "Could not find environment: " ++ show env) 
+			maybe
+				(error $ "Could not find environment: " ++ show env)
 				return $ fromObject =<< M.lookup env envs
 
 		-- fromObject :: Y.Value -> Maybe (M.HashMap Text Y.Value)
